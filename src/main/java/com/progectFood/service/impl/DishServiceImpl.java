@@ -1,8 +1,6 @@
 package com.progectFood.service.impl;
 
 import com.progectFood.controller.exception.ResourceNotFoundException;
-import com.progectFood.converter.DishDishDtoConverter;
-import com.progectFood.converter.DishDtoDishConverter;
 import com.progectFood.domian.dto.DishDto;
 import com.progectFood.domian.entity.Dish;
 import com.progectFood.domian.entity.Restaurant;
@@ -11,12 +9,17 @@ import com.progectFood.repository.DishRepository;
 import com.progectFood.repository.RestaurantRepository;
 import com.progectFood.repository.StatusRestaurantRepository;
 import com.progectFood.service.DishService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class DishServiceImpl implements DishService {
     @Autowired
     DishRepository dishRepository;
@@ -25,6 +28,7 @@ public class DishServiceImpl implements DishService {
     @Autowired
     StatusRestaurantRepository statusRestaurantRepository;
 
+    private final ConversionService conversionService;
 
     @Override
     public List<DishDto> findDishesByRest(String title) throws ResourceNotFoundException {
@@ -36,18 +40,25 @@ public class DishServiceImpl implements DishService {
         List<DishDto> dishes = null;
 
         for (Dish dish:dishRepository.findDishesByRest(restaurant)) {
-            dishes.add(new DishDishDtoConverter().convert(dish));
+            DishDto dishDto=conversionService.convert(dish,DishDto.class);
+            dishes.add(dishDto);
         }
         return dishes;
     }
 
     @Override
     public List<DishDto> findAll() {
-        return null;
+        List<DishDto> dishes = null;
+        for (Dish dish:dishRepository.findAll()) {
+            DishDto dishDto=conversionService.convert(dish,DishDto.class);
+            dishes.add(dishDto);
+        }
+        return dishes;
     }
 
     @Override
     public void save(DishDto dishDto) {
-        dishRepository.save(new DishDtoDishConverter().convert(dishDto));
+        Dish dish=conversionService.convert(dishDto,Dish.class);
+        dishRepository.save(dish);
     }
 }
