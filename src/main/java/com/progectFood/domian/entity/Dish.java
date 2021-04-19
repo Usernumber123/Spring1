@@ -24,12 +24,12 @@ public class Dish {
 
     @Column(name="price")
     @NonNull
-    private Integer price;
+    private Integer price=0;
 
-    @ManyToOne
-    @JoinColumn(name="restaurant")
-    @NonNull
-    private Restaurant restaurant;
+   // @ManyToOne
+  //  @JoinColumn(name="restaurant")
+  //  @NonNull
+  //  private Restaurant restaurant=new Restaurant();
 
 
 }

@@ -15,6 +15,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,7 +38,7 @@ public class DishServiceImpl implements DishService {
         List<Restaurant> rest = restaurantRepository.findByTitle(title, status);
 
         Restaurant restaurant = rest.get(0);
-        List<DishDto> dishes = null;
+        List<DishDto> dishes = new ArrayList<DishDto>();
 
         for (Dish dish:dishRepository.findDishesByRest(restaurant)) {
             DishDto dishDto=conversionService.convert(dish,DishDto.class);
@@ -48,7 +49,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public List<DishDto> findAll() {
-        List<DishDto> dishes = null;
+        List<DishDto> dishes = new ArrayList<DishDto>();
         for (Dish dish:dishRepository.findAll()) {
             DishDto dishDto=conversionService.convert(dish,DishDto.class);
             dishes.add(dishDto);
