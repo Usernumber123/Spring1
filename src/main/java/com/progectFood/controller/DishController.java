@@ -18,18 +18,18 @@ public class DishController {
     DishService dishService;
 
     @GetMapping
-    public List<DishDto> getAllDishes(){
+    public List<DishDto> getAllDishes() {
         return dishService.findAll();
     }
 
 
     @GetMapping("/{title}")
-    public List<DishDto> getDishesByRest(@PathVariable(value="title") String title) throws ResourceNotFoundException {
+    public List<DishDto> getDishesByRest(@PathVariable(value = "title") String title) throws ResourceNotFoundException {
         return dishService.findDishesByRest(title);
     }
 
     @PostMapping
-    public void createDish(@RequestBody DishDto dishDto){
+    public void createDish(@RequestBody DishDto dishDto) {
         dishService.save(dishDto);
     }
 }

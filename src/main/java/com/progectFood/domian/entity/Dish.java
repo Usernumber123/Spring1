@@ -8,28 +8,28 @@ import lombok.NonNull;
 import javax.persistence.*;
 
 @Entity
-@Table(name="dishes")
+@Table(name = "dishes")
 @Data
 @NoArgsConstructor
 public class Dish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name="id")
+    @JoinColumn(name = "id")
     private Integer id;
 
-    @Column(name="title")
+    @Column(name = "title")
     @NonNull
     private String title;
 
-    @Column(name="price")
+    @Column(name = "price")
     @NonNull
-    private Integer price=0;
+    private Integer price = 0;
 
-   // @ManyToOne
-  //  @JoinColumn(name="restaurant")
-  //  @NonNull
-  //  private Restaurant restaurant=new Restaurant();
+    @ManyToOne
+    @JoinColumn(name = "restaurant")
+    @NonNull
+    private Restaurant restaurant = new Restaurant();
 
 
 }

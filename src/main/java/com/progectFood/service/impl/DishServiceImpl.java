@@ -34,14 +34,14 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<DishDto> findDishesByRest(String title) throws ResourceNotFoundException {
         StatusRestaurant status = statusRestaurantRepository.findById(1)
-                .orElseThrow(() -> new ResourceNotFoundException("Status not found for this id = " +1));
+                .orElseThrow(() -> new ResourceNotFoundException("Status not found for this id = " + 1));
         List<Restaurant> rest = restaurantRepository.findByTitle(title, status);
 
         Restaurant restaurant = rest.get(0);
         List<DishDto> dishes = new ArrayList<DishDto>();
 
-        for (Dish dish:dishRepository.findDishesByRest(restaurant)) {
-            DishDto dishDto=conversionService.convert(dish,DishDto.class);
+        for (Dish dish : dishRepository.findDishesByRest(restaurant)) {
+            DishDto dishDto = conversionService.convert(dish, DishDto.class);
             dishes.add(dishDto);
         }
         return dishes;
@@ -49,9 +49,9 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public List<DishDto> findAll() {
-        List<DishDto> dishes = new ArrayList<DishDto>();
-        for (Dish dish:dishRepository.findAll()) {
-            DishDto dishDto=conversionService.convert(dish,DishDto.class);
+        List<DishDto> dishes = new ArrayList<>();
+        for (Dish dish : dishRepository.findAll()) {
+            DishDto dishDto = conversionService.convert(dish, DishDto.class);
             dishes.add(dishDto);
         }
         return dishes;
@@ -59,7 +59,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public void save(DishDto dishDto) {
-        Dish dish=conversionService.convert(dishDto,Dish.class);
+        Dish dish = conversionService.convert(dishDto, Dish.class);
         dishRepository.save(dish);
     }
 }
