@@ -31,6 +31,8 @@ public class DishServiceImpl implements DishService {
 
     private final ConversionService conversionService;
 
+
+
     @Override
     public List<DishDto> findDishesByRest(String title) throws ResourceNotFoundException {
         StatusRestaurant status = statusRestaurantRepository.findById(1)
