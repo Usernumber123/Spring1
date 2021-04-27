@@ -15,12 +15,12 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class Order extends EntityBase{
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JoinColumn(name = "id")
-    private Integer id;
+    private Integer id;*/
 
     @ManyToOne
     @JoinColumn(name = "restaurant")

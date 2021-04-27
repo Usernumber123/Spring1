@@ -18,12 +18,12 @@ import java.util.ArrayList;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Restaurant {
-
+public class Restaurant extends EntityBase{
+/*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JoinColumn(name="id")
-    private Integer id;
+    private Integer id;*/
 
     @Column(name="title")
     @NonNull

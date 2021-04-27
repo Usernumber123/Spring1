@@ -10,12 +10,12 @@ import javax.persistence.*;
 @Table(name="roles")
 @Data
 @NoArgsConstructor
-public class Role {
+public class Role extends EntityBase{
 
-    @Id
+  /*  @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JoinColumn(name="id")
-    private Integer id;
+    private Integer id;*/
 
     @Column(name="role")
     @NonNull

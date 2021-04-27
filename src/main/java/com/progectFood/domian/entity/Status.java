@@ -12,13 +12,13 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Status {
+public class Status extends EntityBase{
 
-    @Id
+   /* @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JoinColumn(name="id")
     private Integer id;
-
+*/
     @Column(name="status")
     @NonNull
     private String status;

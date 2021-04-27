@@ -12,12 +12,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class OrderItem {
+public class OrderItem extends EntityBase{
 
-    @Id
+   /* @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Integer id;
+    private Integer id;*/
 
     @ManyToOne
     @JoinColumn(name="dish")
