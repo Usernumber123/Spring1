@@ -17,7 +17,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("from User where role=:role and status=:status order by id")
     List<User> getCourierByStatus(@Param("role") Role role, @Param("status") Status status);
@@ -35,20 +35,23 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     Optional<User> findOneByLogin(String login);
 
-    @Query(value="SELECT date_part('hour',current_time) from users", nativeQuery = true)
+    @Query(value = "SELECT date_part('hour',current_time) from users", nativeQuery = true)
     List<Integer> currentHour();
-    /* @Modifying
-    @Query("update User set password=:password where id=:id")
-    void changePassword(@Param("password") String password, @Param("id") Integer id);
 
     @Modifying
     @Query("update User set phone=:phone where id=:id")
     void changePhone(@Param("phone") String phone, @Param("id") Integer id);
 
+
     @Modifying
     @Query("update User set firstName= :firstName, lastName= :lastName, phone= :phone, password= :password," +
             " login=:login where id=:id")
     void updateUser(@Param("firstName") String firstName, @Param("lastName") String lastName,
-                    @Param("phone") String phone, @Param("id") Integer id, @Param("login") String login,@Param("password") String password);
-    */
+                    @Param("phone") String phone, @Param("id") Integer id, @Param("login") String login, @Param("password") String password);
+
+    @Modifying
+    @Query("update User set password=:password where id=:id")
+    void changePassword(@Param("password") String password, @Param("id") Integer id);
+
+
 }

@@ -11,10 +11,11 @@ import java.util.Set;
 @Component
 @RequiredArgsConstructor
 public class ConverterConfiguration {
-    private final Set<Converter<?,?>> converters;
+    private final Set<Converter<?, ?>> converters;
     private final ConfigurableConversionService configurableConversionService;
+
     @PostConstruct
-    public void setUp(){
+    public void setUp() {
         converters.forEach(configurableConversionService::addConverter);
     }
 

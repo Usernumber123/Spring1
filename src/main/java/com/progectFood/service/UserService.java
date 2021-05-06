@@ -31,5 +31,15 @@ public interface UserService {
     Map<String, Boolean> deleteCourier(Integer id)
             throws ResourceNotFoundException;
 
+    Map<String, Boolean> changePhone(String phone, Integer id);
+
     Integer getCurrentHour();
+
+    void updateUser(UserDto userDto);
+
+    void createCustomer(UserDto userDto) throws ResourceNotFoundException;
+
+    void createCourier(UserDto userDto) throws ResourceNotFoundException;
+
+    Map<String, Boolean> changePassword(String password, Integer id);
 }

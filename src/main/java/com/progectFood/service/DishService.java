@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface DishService {
     List<DishDto> findDishesByRest(String title) throws ResourceNotFoundException;
+
     List<DishDto> findAll();
+
     void save(DishDto dishDto);
 }

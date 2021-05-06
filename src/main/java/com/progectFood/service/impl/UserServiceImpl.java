@@ -14,6 +14,7 @@ import com.progectFood.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     StatusRepository statusRepository;
     private final ConversionService conversionService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Optional<UserDto> getByLogin(String login) {
@@ -171,7 +173,62 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Map<String, Boolean> changePhone(String phone, Integer id) {
+
+        userRepository.changePhone(phone, id);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Phone was changed", Boolean.TRUE);
+        return response;
+    }
+
+    @Override
     public Integer getCurrentHour() {
         return userRepository.currentHour().get(0);
     }
+
+    @Override
+    public void updateUser(UserDto userDto) {
+        String hashPassword = passwordEncoder.encode(userDto.getPassword());
+        User user = conversionService.convert(userDto, User.class);
+        userRepository.updateUser(user.getFirstName(), user.getLastName(), user.getPhone(), user.getId(), user.getLogin(), hashPassword);
+    }
+
+    @Override
+    public void createCustomer(UserDto userDto) throws ResourceNotFoundException {
+        String hashPassword = passwordEncoder.encode(userDto.getPassword());
+        Role role = roleRepository.findById(1)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found for this id = " + 1));
+        Status status = statusRepository.findById(1)
+                .orElseThrow(() -> new ResourceNotFoundException("Status not found for this id = " + 1));
+        User user = conversionService.convert(userDto, User.class);
+        user.setPassword(hashPassword);
+        user.setRole(role);
+        user.setStatus(status);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void createCourier(UserDto userDto) throws ResourceNotFoundException {
+        String hashPassword = passwordEncoder.encode(userDto.getPassword());
+        Role role = roleRepository.findById(2)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found for this id = " + 2));
+        Status status = statusRepository.findById(1)
+                .orElseThrow(() -> new ResourceNotFoundException("Status not found for this id = " + 1));
+
+        User user = conversionService.convert(userDto, User.class);
+        user.setPassword(hashPassword);
+        user.setRole(role);
+        user.setStatus(status);
+        userRepository.save(user);
+    }
+
+    @Override
+    public Map<String, Boolean> changePassword(String password, Integer id) {
+        String hashPassword = passwordEncoder.encode(password);
+        userRepository.changePassword(hashPassword, id);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Password was changed", Boolean.TRUE);
+        return response;
+    }
+
 }

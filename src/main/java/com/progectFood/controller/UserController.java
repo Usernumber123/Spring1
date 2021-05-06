@@ -4,10 +4,12 @@ import com.progectFood.controller.exception.ResourceNotFoundException;
 import com.progectFood.domian.dto.UserDto;
 import com.progectFood.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -78,5 +80,42 @@ public class UserController {
             throws ResourceNotFoundException {
 
         return userService.deleteCourier(id);
+    }
+
+    @Transactional
+    @PutMapping("/users/phone/{phone}/{id}")
+    @PreAuthorize(value = "hasRole('ADMIN')")
+    public Map<String, Boolean> changePhone(@PathVariable(value = "phone") String phone,
+                                            @PathVariable(value = "id") Integer id) {
+        return userService.changePhone(phone, id);
+    }
+
+    @PostMapping("/customers/create")
+    public void createCustomer(@RequestBody UserDto userDto) throws ResourceNotFoundException {
+        userService.createCustomer(userDto);
+    }
+
+    @PostMapping("/couriers/create")
+    @PreAuthorize(value = "hasRole('ADMIN')")
+    public void createCourier(@RequestBody UserDto userDto) throws ResourceNotFoundException {
+        userService.createCourier(userDto);
+    }
+
+    @Transactional
+    @PutMapping("/users/update")
+    public void updateUser(@RequestBody UserDto userDto) {
+        userService.updateUser(userDto);
+    }
+
+    @GetMapping("/getUser")
+    public String getAuthUser(@AuthenticationPrincipal UserDetails userDetails) {
+        return userDetails.getUsername();
+    }
+
+    @Transactional
+    @PutMapping("/users/password/{password}/{id}")
+    public Map<String, Boolean> changePassword(@PathVariable(value = "password") String password,
+                                               @PathVariable(value = "id") Integer id) {
+        return userService.changePassword(password, id);
     }
 }

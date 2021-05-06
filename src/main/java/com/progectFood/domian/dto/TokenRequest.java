@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DishDto {
-
-    private Integer id;
-    private String title ="123";
-    private Integer price =0;
-    private Integer number;
-
+public class TokenRequest {
+private String login;
+private String password;
 }
