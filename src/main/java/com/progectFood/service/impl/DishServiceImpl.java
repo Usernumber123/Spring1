@@ -22,12 +22,12 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class DishServiceImpl implements DishService {
-    @Autowired
-    DishRepository dishRepository;
-    @Autowired
-    RestaurantRepository restaurantRepository;
-    @Autowired
-    StatusRestaurantRepository statusRestaurantRepository;
+
+    private final DishRepository dishRepository;
+
+    private final RestaurantRepository restaurantRepository;
+
+    private final StatusRestaurantRepository statusRestaurantRepository;
 
     private final ConversionService conversionService;
 
@@ -59,8 +59,10 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public void save(DishDto dishDto) {
+    public DishDto save(DishDto dishDto) {
         Dish dish = conversionService.convert(dishDto, Dish.class);
-        dishRepository.save(dish);
+        Dish dish1= dishRepository.save(dish);
+        return conversionService.convert(dish1, DishDto.class);
     }
+
 }

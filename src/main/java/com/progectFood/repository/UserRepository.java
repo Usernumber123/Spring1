@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-
     @Query("from User where role=:role and status=:status order by id")
     List<User> getCourierByStatus(@Param("role") Role role, @Param("status") Status status);
 

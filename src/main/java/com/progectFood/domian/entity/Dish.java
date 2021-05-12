@@ -1,16 +1,14 @@
 package com.progectFood.domian.entity;
 
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "dishes")
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 public class Dish extends EntityBase{
 
    /* @Id

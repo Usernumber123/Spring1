@@ -4,6 +4,7 @@ import com.progectFood.controller.exception.ResourceNotFoundException;
 import com.progectFood.domian.dto.RestaurantDto;
 import com.progectFood.service.OrderService;
 import com.progectFood.service.RestaurantService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +14,14 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/restaurants")
+@RequiredArgsConstructor
 public class RestaurantController {
 
-    @Autowired
-    RestaurantService restaurantService;
 
-    @Autowired
-    OrderService orderService;
+    private final RestaurantService restaurantService;
+
+
+    private final OrderService orderService;
 
 
     @GetMapping

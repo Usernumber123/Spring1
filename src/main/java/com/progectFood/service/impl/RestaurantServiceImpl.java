@@ -22,10 +22,8 @@ import java.util.Map;
 @Transactional
 @RequiredArgsConstructor
 public class RestaurantServiceImpl implements RestaurantService {
-    @Autowired
-    RestaurantRepository restaurantRepository;
-    @Autowired
-    StatusRestaurantRepository statusRestaurantRepository;
+    private final RestaurantRepository restaurantRepository;
+    private final StatusRestaurantRepository statusRestaurantRepository;
     private final ConversionService conversionService;
 
     @Override

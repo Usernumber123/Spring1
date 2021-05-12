@@ -13,8 +13,8 @@ import java.util.List;
 @RequestMapping("/dishes")
 @RequiredArgsConstructor
 public class DishController {
-    @Autowired
-    DishService dishService;
+
+    private final DishService dishService;
 
     @GetMapping
     public List<DishDto> getAllDishes() {
@@ -28,7 +28,7 @@ public class DishController {
     }
 
     @PostMapping
-    public void createDish(@RequestBody DishDto dishDto) {
-        dishService.save(dishDto);
+    public DishDto createDish(@RequestBody DishDto dishDto) {
+      return   dishService.save(dishDto);
     }
 }

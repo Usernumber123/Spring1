@@ -11,6 +11,7 @@ public class DishDtoDishConverter implements Converter<DishDto, Dish> {
     @Override
     public Dish convert(DishDto dishDto) {
         Dish dish = new Dish();
+        dish.setId(dishDto.getId());
         dish.setPrice(dishDto.getPrice());
         dish.setTitle(dishDto.getTitle());
         return dish;

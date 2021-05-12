@@ -91,20 +91,20 @@ public class UserController {
     }
 
     @PostMapping("/customers/create")
-    public void createCustomer(@RequestBody UserDto userDto) throws ResourceNotFoundException {
-        userService.createCustomer(userDto);
+    public UserDto createCustomer(@RequestBody UserDto userDto) throws ResourceNotFoundException {
+        return  userService.createCustomer(userDto);
     }
 
     @PostMapping("/couriers/create")
     @PreAuthorize(value = "hasRole('ADMIN')")
-    public void createCourier(@RequestBody UserDto userDto) throws ResourceNotFoundException {
-        userService.createCourier(userDto);
+    public UserDto createCourier(@RequestBody UserDto userDto) throws ResourceNotFoundException {
+        return   userService.createCourier(userDto);
     }
 
     @Transactional
     @PutMapping("/users/update")
-    public void updateUser(@RequestBody UserDto userDto) {
-        userService.updateUser(userDto);
+    public UserDto updateUser(@RequestBody UserDto userDto) {
+        return  userService.updateUser(userDto);
     }
 
     @GetMapping("/getUser")

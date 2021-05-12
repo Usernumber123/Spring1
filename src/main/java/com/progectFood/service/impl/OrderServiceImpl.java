@@ -21,14 +21,10 @@ import java.util.*;
 @Transactional
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
-    @Autowired
-    StatusDeliveryRepository statusDeliveryRepository;
-    @Autowired
-    OrderRepository orderRepository;
-    @Autowired
-    DishRepository dishRepository;
-    @Autowired
-    OrderItemRepository orderItemRepository;
+    private final StatusDeliveryRepository statusDeliveryRepository;
+    private final OrderRepository orderRepository;
+    private final DishRepository dishRepository;
+    private final OrderItemRepository orderItemRepository;
     private final ConversionService conversionService;
 
     @Override

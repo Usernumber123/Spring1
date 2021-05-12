@@ -187,14 +187,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(UserDto userDto) {
+    public UserDto updateUser(UserDto userDto) {
         String hashPassword = passwordEncoder.encode(userDto.getPassword());
         User user = conversionService.convert(userDto, User.class);
         userRepository.updateUser(user.getFirstName(), user.getLastName(), user.getPhone(), user.getId(), user.getLogin(), hashPassword);
+        return conversionService.convert(user, UserDto.class);
     }
 
     @Override
-    public void createCustomer(UserDto userDto) throws ResourceNotFoundException {
+    public UserDto createCustomer(UserDto userDto) throws ResourceNotFoundException {
         String hashPassword = passwordEncoder.encode(userDto.getPassword());
         Role role = roleRepository.findById(1)
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found for this id = " + 1));
@@ -204,14 +205,15 @@ public class UserServiceImpl implements UserService {
         user.setPassword(hashPassword);
         user.setRole(role);
         user.setStatus(status);
-        userRepository.save(user);
+        User user1=userRepository.save(user);
+        return conversionService.convert(user1, UserDto.class);
     }
 
     @Override
-    public void createCourier(UserDto userDto) throws ResourceNotFoundException {
+    public UserDto createCourier(UserDto userDto) throws ResourceNotFoundException {
         String hashPassword = passwordEncoder.encode(userDto.getPassword());
         Role role = roleRepository.findById(2)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found for this id = " + 2));
+               .orElseThrow(() -> new ResourceNotFoundException("Role not found for this id = " + 2));
         Status status = statusRepository.findById(1)
                 .orElseThrow(() -> new ResourceNotFoundException("Status not found for this id = " + 1));
 
@@ -220,6 +222,7 @@ public class UserServiceImpl implements UserService {
         user.setRole(role);
         user.setStatus(status);
         userRepository.save(user);
+        return conversionService.convert(user, UserDto.class);
     }
 
     @Override

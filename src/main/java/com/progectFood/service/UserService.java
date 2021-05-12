@@ -35,11 +35,11 @@ public interface UserService {
 
     Integer getCurrentHour();
 
-    void updateUser(UserDto userDto);
+    UserDto updateUser(UserDto userDto);
 
-    void createCustomer(UserDto userDto) throws ResourceNotFoundException;
+    UserDto createCustomer(UserDto userDto) throws ResourceNotFoundException;
 
-    void createCourier(UserDto userDto) throws ResourceNotFoundException;
+    UserDto createCourier(UserDto userDto) throws ResourceNotFoundException;
 
     Map<String, Boolean> changePassword(String password, Integer id);
 }

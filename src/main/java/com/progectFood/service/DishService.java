@@ -11,5 +11,5 @@ public interface DishService {
 
     List<DishDto> findAll();
 
-    void save(DishDto dishDto);
+    DishDto save(DishDto dishDto);
 }

@@ -21,11 +21,8 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class OrderItemServiceImpl implements OrderItemService {
-    @Autowired
-    OrderRepository orderRepository;
-
-    @Autowired
-    OrderItemRepository orderItemRepository;
+    private final OrderRepository orderRepository;
+    private final OrderItemRepository orderItemRepository;
     private final ConversionService conversionService;
 
     @Override
