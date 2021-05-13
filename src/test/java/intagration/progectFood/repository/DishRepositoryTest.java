@@ -28,7 +28,7 @@ public class DishRepositoryTest {
     private DishRepository dishRepository;
 
     @Test
-    public void whenFindByName_thenReturnEmployee() {
+    public void findDishesByRestTest() {
         Restaurant restaurant = new Restaurant();
         Restaurant restaurant1 = new Restaurant();
         restaurant1.setTitle("123");
