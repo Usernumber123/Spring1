@@ -10,6 +10,7 @@ import com.progectFood.repository.RestaurantRepository;
 import com.progectFood.repository.StatusRestaurantRepository;
 import com.progectFood.service.DishService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
@@ -32,12 +33,13 @@ public class DishServiceImpl implements DishService {
     private final ConversionService conversionService;
 
 
+
     @Override
-    public List<DishDto> findDishesByRest(String title) throws ResourceNotFoundException {
+    @SneakyThrows
+    public List<DishDto> findDishesByRest(String title)  {
         StatusRestaurant status = statusRestaurantRepository.findById(1)
                 .orElseThrow(() -> new ResourceNotFoundException("Status not found for this id = " + 1));
         List<Restaurant> rest = restaurantRepository.findByTitle(title, status);
-
         Restaurant restaurant = rest.get(0);
         List<DishDto> dishes = new ArrayList<DishDto>();
 

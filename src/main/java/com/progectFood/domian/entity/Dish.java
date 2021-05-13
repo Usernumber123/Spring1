@@ -26,7 +26,7 @@ public class Dish extends EntityBase{
 
     @ManyToOne
     @JoinColumn(name = "restaurant")
-    @NonNull
+   // @NonNull
     private Restaurant restaurant = new Restaurant();
 
 

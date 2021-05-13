@@ -4,6 +4,7 @@ import com.progectFood.controller.exception.ResourceNotFoundException;
 import com.progectFood.domian.dto.DishDto;
 import com.progectFood.service.DishService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,8 @@ public class DishController {
 
 
     @GetMapping("/{title}")
-    public List<DishDto> getDishesByRest(@PathVariable(value = "title") String title) throws ResourceNotFoundException {
+    @SneakyThrows
+    public List<DishDto> getDishesByRest(@PathVariable(value = "title") String title) {
         return dishService.findDishesByRest(title);
     }
 

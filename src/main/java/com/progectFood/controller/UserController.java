@@ -91,6 +91,7 @@ public class UserController {
     }
 
     @PostMapping("/customers/create")
+    @PreAuthorize(value = "hasRole('ADMIN')")
     public UserDto createCustomer(@RequestBody UserDto userDto) throws ResourceNotFoundException {
         return  userService.createCustomer(userDto);
     }
@@ -114,6 +115,7 @@ public class UserController {
 
     @Transactional
     @PutMapping("/users/password/{password}/{id}")
+    @PreAuthorize(value = "hasRole('ADMIN')")
     public Map<String, Boolean> changePassword(@PathVariable(value = "password") String password,
                                                @PathVariable(value = "id") Integer id) {
         return userService.changePassword(password, id);
