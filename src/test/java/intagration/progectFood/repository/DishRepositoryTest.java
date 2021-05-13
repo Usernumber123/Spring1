@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-//@SpringBootTest( classes = Application.class)
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes=Application.class)
