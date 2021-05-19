@@ -4,6 +4,7 @@ import com.progectFood.controller.exception.ResourceNotFoundException;
 import com.progectFood.domian.dto.OrderDto;
 import com.progectFood.service.*;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +19,9 @@ public class OrderController {
 
     private final OrderService orderService;
 
-
+    @SneakyThrows
     @GetMapping
-    public List<OrderDto> getAllOrders() throws ResourceNotFoundException {
+    public List<OrderDto> getAllOrders(){
 
         return orderService.getAllOrders();
     }
@@ -30,9 +31,9 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
 
-
+    @SneakyThrows
     @GetMapping("/waitingDelivery")
-    public List<OrderDto> getAllOrdersWaiting() throws ResourceNotFoundException {
+    public List<OrderDto> getAllOrdersWaiting() {
         return orderService.getAllOrdersWaiting();
     }
     @Transactional
@@ -48,21 +49,25 @@ public class OrderController {
             throws ResourceNotFoundException {
         return orderService.deleteOrder(orderId);
     }
+    @SneakyThrows
     @GetMapping("/customers")
-    public List<OrderDto> getOrderByCust() throws ResourceNotFoundException{
+    public List<OrderDto> getOrderByCust(){
         return orderService.getOrderByCust();
     }
+    @SneakyThrows
     @GetMapping("/couriers")
-    public List<OrderDto> getOrderByCourier() throws ResourceNotFoundException{
+    public List<OrderDto> getOrderByCourier(){
       return orderService.getOrderByCourier();
     }
+    @SneakyThrows
     @GetMapping("/count")
-    public Integer countOrder() throws ResourceNotFoundException{
+    public Integer countOrder() {
       return orderService.countOrder();
     }
+    @SneakyThrows
     @Transactional
     @PostMapping
-    public void createOrder(@RequestBody OrderDto orderDto) throws ResourceNotFoundException{
+    public void createOrder(@RequestBody OrderDto orderDto) {
         orderService.createOrder(orderDto);
     }
 

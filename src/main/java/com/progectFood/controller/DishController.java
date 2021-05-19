@@ -1,11 +1,9 @@
 package com.progectFood.controller;
 
-import com.progectFood.controller.exception.ResourceNotFoundException;
 import com.progectFood.domian.dto.DishDto;
 import com.progectFood.service.DishService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -11,10 +11,7 @@ import javax.persistence.*;
 @Setter
 public class Dish extends EntityBase{
 
-   /* @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name = "id")
-    private Integer id;*/
+
 
     @Column(name = "title")
     @NonNull

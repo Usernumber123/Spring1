@@ -15,11 +15,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class User extends EntityBase{
 
- /*   @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name="id")
-    private Integer id;*/
-
 
     @Column(name="firstname")
     @NonNull

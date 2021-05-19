@@ -2,12 +2,8 @@ package com.progectFood.service.impl;
 
 import com.progectFood.controller.exception.ResourceNotFoundException;
 import com.progectFood.domian.dto.DishDto;
-import com.progectFood.domian.entity.Dish;
-import com.progectFood.domian.entity.Restaurant;
-import com.progectFood.domian.entity.StatusRestaurant;
-import com.progectFood.repository.DishRepository;
-import com.progectFood.repository.RestaurantRepository;
-import com.progectFood.repository.StatusRestaurantRepository;
+import com.progectFood.domian.entity.*;
+import com.progectFood.repository.*;
 import com.progectFood.service.DishService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -29,7 +25,9 @@ public class DishServiceImpl implements DishService {
     private final RestaurantRepository restaurantRepository;
 
     private final StatusRestaurantRepository statusRestaurantRepository;
-
+    private final StatusRepository status;
+    private final RoleRepository role;
+    private final StatusDeliveryRepository  statusDeliveryRepository ;
     private final ConversionService conversionService;
 
 

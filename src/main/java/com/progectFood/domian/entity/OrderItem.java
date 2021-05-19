@@ -14,11 +14,6 @@ import javax.persistence.*;
 @Data
 public class OrderItem extends EntityBase{
 
-   /* @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Integer id;*/
-
     @ManyToOne
     @JoinColumn(name="dish")
     private Dish dish;

@@ -28,7 +28,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public List<OrderItemDto> getOrderItemsByOrder(Integer id) throws ResourceNotFoundException {
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Order not found for this id = " + 1));
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found for this id = " + id));
 
         List<OrderItemDto> orders = new ArrayList<>();
         for (OrderItem orderItem : orderItemRepository.getOrderItemsByOrder(order)) {

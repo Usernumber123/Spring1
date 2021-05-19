@@ -17,10 +17,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class Order extends EntityBase{
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name = "id")
-    private Integer id;*/
 
     @ManyToOne
     @JoinColumn(name = "restaurant")

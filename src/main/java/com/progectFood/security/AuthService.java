@@ -39,9 +39,9 @@ public class AuthService {
         User user = new User();
         user.setLogin(signUpDto.getLogin());
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
-       //Role role = roleRepository.findById(1)
-        //       .orElseThrow(() -> new ResourceNotFoundException("Role not found for this id = " + 1));
-       //user.setRole(role);
+        Role role = roleRepository.findById(1)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found for this id = " + 1));
+        user.setRole(role);
         userRepository.save(user);
         return generateToken(TokenRequest.builder().login(signUpDto.getLogin()).password(signUpDto.getPassword()).build());
     }

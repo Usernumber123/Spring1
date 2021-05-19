@@ -51,32 +51,5 @@ public class DishRepositoryTest {
                 .isNotEqualTo(restaurant1);
         assertThat(found.size())
                 .isEqualTo(2);
-
-    }
-    @Test
-    public void findDishesByRestTest2() {
-        Restaurant restaurant = new Restaurant();
-        Restaurant restaurant1 = new Restaurant();
-        restaurant1.setTitle("123");
-        Dish dish=new Dish();
-        Dish dish1=new Dish();
-        dish.setRestaurant(restaurant);
-        dish1.setRestaurant(restaurant);
-        entityManager.persist(restaurant);
-        entityManager.persist(dish1);
-        entityManager.persist(dish);
-        entityManager.flush();
-
-
-        List<Dish> found = dishRepository.findDishesByRest(restaurant);
-
-
-        assertThat(found.get(0).getRestaurant())
-                .isEqualTo(restaurant);
-        assertThat(found.get(1).getRestaurant())
-                .isNotEqualTo(restaurant1);
-        assertThat(found.size())
-                .isEqualTo(2);
-
     }
 }
