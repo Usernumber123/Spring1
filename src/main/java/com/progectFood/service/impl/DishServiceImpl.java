@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DishServiceImpl implements DishService {
 
-    private final DishRepository dishRepository;
+    private final  DishRepository dishRepository;
 
     private final RestaurantRepository restaurantRepository;
 

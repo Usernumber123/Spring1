@@ -40,6 +40,7 @@ public class RestaurantController {
     }
     @SneakyThrows
     @PostMapping
+    @PreAuthorize(value = "hasRole('ADMIN')")
     public RestaurantDto createRestaurant(@RequestBody RestaurantDto restaurantDto) {
      return restaurantService.createRestaurant(restaurantDto);
     }
