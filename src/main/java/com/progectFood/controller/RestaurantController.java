@@ -38,7 +38,11 @@ public class RestaurantController {
     public List<RestaurantDto> getRestaurantByLastName(@PathVariable(value = "title") String title)  {
         return restaurantService.getRestaurantByLastName(title);
     }
-
+    @SneakyThrows
+    @PostMapping
+    public RestaurantDto createRestaurant(@RequestBody RestaurantDto restaurantDto) {
+     return restaurantService.createRestaurant(restaurantDto);
+    }
     @Transactional
     @PreAuthorize(value = "hasRole('ADMIN')")
     @DeleteMapping("/{id}")

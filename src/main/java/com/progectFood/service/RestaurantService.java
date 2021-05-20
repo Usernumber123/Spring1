@@ -13,5 +13,7 @@ public interface RestaurantService {
 
     List<RestaurantDto> getRestaurantByLastName(String title) throws ResourceNotFoundException;
 
+    RestaurantDto createRestaurant(RestaurantDto restaurantDto);
+
     Map<String, Boolean> deleteRestaurant(Integer restaurantId) throws ResourceNotFoundException;
 }

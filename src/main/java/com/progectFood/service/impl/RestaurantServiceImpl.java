@@ -8,6 +8,7 @@ import com.progectFood.repository.RestaurantRepository;
 import com.progectFood.repository.StatusRestaurantRepository;
 import com.progectFood.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -61,6 +62,16 @@ public class RestaurantServiceImpl implements RestaurantService {
             restaurants.add(restaurantDto);
         }
         return restaurants;
+    }
+    @SneakyThrows
+    @Override
+    public RestaurantDto createRestaurant(RestaurantDto restaurantDto) {
+        StatusRestaurant status = statusRestaurantRepository.findById(1)
+                .orElseThrow(() -> new ResourceNotFoundException("Status not found for this id = " + 1));
+        Restaurant restaurant = conversionService.convert(restaurantDto, Restaurant.class);
+        restaurant.setStatusRestaurant(status);
+        restaurantRepository.save(restaurant);
+        return  conversionService.convert(restaurant, RestaurantDto.class);
     }
 
     @Override
